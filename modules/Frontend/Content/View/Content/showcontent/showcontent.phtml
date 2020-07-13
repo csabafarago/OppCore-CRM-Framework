@@ -1,0 +1,9 @@
+<?php if(!$this->no_result){ ?>
+<div class="content-wrapper">
+    <div class="content-title"><?= $this->content->title; ?></div>
+    <div><?= $this->content->text; ?></div>
+</div>
+<?php } else { ?>
+    <div>No results.</div>
+<?php } ?>
+<?php

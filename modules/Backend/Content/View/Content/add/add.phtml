@@ -1,0 +1,196 @@
+<?php
+use OppCoreClasses\View\LayoutAppender;
+
+?>
+<section class="content-header">
+    <h1>
+        Create
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">User profile</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom system-multi-language-tab">
+                <ul class="nav nav-tabs">
+                    <?php $first = true; ?>
+                    <?php foreach ($this->languages as $language): ?>
+                        <li class="<?= ($first ? "active" : "" ) ?>">
+                            <a href="#lang_<?= $language->lang_code; ?>" data-toggle="tab">
+                                <?= $language->lang_name; ?>
+                            </a>
+                        </li>
+                        <?php $first = false; ?>
+                    <?php endforeach; ?>
+                </ul>
+                <?php echo $this->form['open'] ?>
+                <div class="tab-content">
+                    <?php $first = true; ?>
+                    <?php foreach ($this->languages as $language): ?>
+                        <div class="<?= ($first ? "active" : "" ) ?> tab-pane" id="lang_<?= $language->lang_code; ?>">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <?php echo $this->form[$language->lang_code . '_title_label'] ?>
+                                    <div class="col-sm-8">
+                                        <?php echo $this->form[$language->lang_code . '_title_input'] ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->form[$language->lang_code . '_sef_label'] ?>
+                                    <div class="col-sm-8">
+                                        <?php echo $this->form[$language->lang_code . '_sef_input'] ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->form[$language->lang_code . '_keywords_label'] ?>
+                                    <div class="col-sm-8">
+                                        <?php echo $this->form[$language->lang_code . '_keywords_input'] ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->form[$language->lang_code . '_lead_label'] ?>
+                                    <div class="col-sm-8">
+                                        <?php echo $this->form[$language->lang_code . '_lead_input'] ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->form[$language->lang_code . '_text_label'] ?>
+                                    <div class="col-sm-12">
+                                        <?php echo $this->form[$language->lang_code . '_text_input'] ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->form[$language->lang_code . '_lang_id_label'] ?>
+                                    <div class="col-sm-8">
+                                        <?php echo $this->form[$language->lang_code . '_lang_id_input'] ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.tab-pane -->
+                        <?php $first = false; ?>
+                    <?php endforeach; ?>
+                </div><!-- /.tab-content -->
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <?php echo $this->form['_token'] ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->form['lead_image_label'] ?>
+                        <div class="col-sm-8">
+                            <?php echo $this->form['lead_image_input'] ?>
+                            <?php echo $this->form['id_input'] ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->form['categories_label'] ?>
+                        <div class="col-sm-8">
+                            <div class="checkbox">
+                                <?= $this->form['categories_selectlist'] ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->form['active_label'] ?>
+                        <div class="col-sm-8">
+                            <div class="checkbox">
+                                <?php echo $this->form['active_radio'] ?>           
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-8">
+                            <?php echo $this->form['save_submit'] ?>
+                        </div>
+                    </div>
+                    <?php echo $this->form['close'] ?>
+                </div>
+            </div><!-- /.nav-tabs-custom -->
+            <iframe id="form_target" name="form_target" style="display:none"></iframe>
+            <form id="my_form" action="/hu-admin/ajaxfileupload/" target="form_target" method="post" enctype="multipart/form-data" style="width:0px;height:0;overflow:hidden">
+                <input name="image" type="file" onchange="$('#my_form').submit();this.value='sajt';">
+            </form>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Help Box -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Breaf</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Kategória neve</strong>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Szülő kategória</strong>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    </div>
+</section><!-- /.content -->
+
+
+<?php 
+
+$textarea_selectors = [];
+foreach ($this->languages as $language){
+    $textarea_selectors[] = '#'.$language->lang_code .'_text';
+} 
+
+$inlineScript = "
+if (tinymce.editors.length > 0) {
+    var textArea_id = '';";
+foreach ($this->languages as $language){
+    $inlineScript .= ""
+            . "textArea_id = '" . $language->lang_code ."_text';"
+            . "tinymce.execCommand('mceFocus', true, textArea_id );";
+    $inlineScript .= "tinymce.execCommand('mceRemoveEditor',true, textArea_id);";
+    $inlineScript .= "tinymce.execCommand('mceAddEditor',true, textArea_id);";
+} 
+$inlineScript .= "console.log(textArea_id);}";
+
+$inlineScript .= "
+$(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+});
+
+console.log('content edit loaded');
+tinymce.init({
+  selector: '" . implode(', ', $textarea_selectors) . "',
+  height: 500,
+  theme: 'modern',
+  images_upload_credentials: true,
+  setup: function(editor) {
+    initImageUpload(editor);
+  },
+  language: 'hu_HU',
+  file_browser_callback_types: 'file image media',
+  paste_data_images: true,
+  plugins: [
+    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+    'searchreplace wordcount visualblocks visualchars code fullscreen',
+    'insertdatetime media nonbreaking save table contextmenu directionality',
+    'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+  ],
+  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+  toolbar2: 'print preview media | forecolor backcolor emoticons | codesample imageupload',
+  image_advtab: true,
+  templates: [
+    { title: 'Test template 1', content: 'Test 1' },
+    { title: 'Test template 2', content: 'Test 2' }
+  ],
+  content_css: [
+    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+    '//www.tinymce.com/css/codepen.min.css'
+  ]
+ });
+";
+
+LayoutAppender::appendInlineFooterJs(__DIR__ . '/../../../Assets/js/ajaxfileupload.js');
+LayoutAppender::appendInlineScriptFooterJs($inlineScript);

@@ -1,0 +1,36 @@
+</br>Front end Content Index viewből
+<?php //var_dump($this->form); ?>
+<?php echo $this->my_name; ?>
+<?php echo $this->form['open']; ?>
+<?php echo $this->form['full_name_label']; ?>
+<?php echo $this->form['full_name_input']; ?>
+<?php echo $this->form['full_name_error']; ?>
+<?php echo $this->form['gender_label']; ?>
+<?php echo $this->form['gender_radio']; ?>
+<?php echo $this->form['gender_error']; ?>
+<?php echo $this->form['gender_second_label']; ?>
+<?php echo $this->form['gender_second_radio']; ?>
+<?php echo $this->form['gender_second_error']; ?>
+<?php echo $this->form['favorite_sport_label']; ?>
+<?php echo $this->form['favorite_sport_input']; ?>
+<?php echo $this->form['favorite_sport_error']; ?>
+<?php echo $this->form['favorite_meal_label']; ?>
+<?php echo $this->form['favorite_meal_checkbox']; ?>
+<?php echo $this->form['favorite_meal_error']; ?>
+<?php echo $this->form['_token']; ?>
+<?php echo $this->form['save_submit']; ?>
+<?php echo $this->form['close']; ?>
+
+
+</br>
+<?php
+foreach($this->contents as $content):?>
+    <?= $content['id']; ?>
+    <?= $content['username']; ?>
+    <?= $content['first_name']; ?>
+    <?= $content['last_name']; ?>
+    <?= $content['email']; ?>
+    <?= $content['active']; ?>
+    </br>
+<?php endforeach; ?>
+

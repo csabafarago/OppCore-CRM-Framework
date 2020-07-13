@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 7, 2016, 10:46:50 PM
+    Author     : csabi
+*/
+
+.debug-data10{
+    bottom: 0;
+    right: 0;    
+    position: fixed;
+}
+
+.debug-data10 .data{
+    float: left;
+}
+
+.debug-data10 .open{
+    background-color: black;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 6px;
+}
+
+.debug-data10 .open:hover + .closed{
+    display: block;
+}
+
+.debug-data10 .closed:hover{
+    display: block;
+}
+
+.debug-data10 .closed .orange{
+    color:orange;
+}
+
+.debug-data10 .closed .green{
+    color:green;
+}
+
+.debug-data10 .closed{
+    display: none;
+    position: absolute;
+    bottom: 30px;
+    right: 0px;
+    background-color: #3f3f3f;
+    color: #fff;
+    font-weight: 700;
+    padding: 12px;
+    width: 900px;
+    height: 400px;
+    overflow-y: scroll;
+}

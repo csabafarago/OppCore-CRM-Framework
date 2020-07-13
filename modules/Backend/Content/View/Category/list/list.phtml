@@ -1,0 +1,55 @@
+<?php
+use OppCoreClasses\View\LayoutAppender;
+
+LayoutAppender::appendInlineFooterJs(__DIR__ . '/../../../Assets/js/categories.js');
+?>
+<section class="content-header">
+    <h1>
+        Categories
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <a href="<?= $this->create_category; ?>" class="btn btn-success">Add</a>
+            <div class="box">
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Parent</th>
+                                <th>Visible</th>
+                                <th>Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->categories as $category): ?>
+                                <tr>
+                                    <td><?= $category->category_id ?></td>
+                                    <td><?= $category->category_name ?></td>
+                                    <td><?= ($category->parent_name ? $category->parent_name : ' - ') ?></td>
+                                    <td><?= ($category->active ? 'Igen' : 'Nem') ?></td>
+                                    <td>
+                                        <a href="<?= $this->category_edit_link.'/'.$category->category_id ?>" class="btn-primary btn-sm"> <i class="fa fa-pencil"></i> </a>&nbsp;
+                                        <a href="<?= $this->category_delete_link.'/'.$category->category_id ?>" class="btn-danger btn-sm delete"> <i class="fa fa-trash-o"></i> </a>&nbsp;
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Parent</th>
+                                <th>Visible</th>
+                                <th>Operations</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

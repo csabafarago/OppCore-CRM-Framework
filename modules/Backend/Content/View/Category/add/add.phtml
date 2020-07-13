@@ -1,0 +1,93 @@
+<?php
+//echo $this->name;
+//var_dump($this->languages);
+//var_dump($this->form);
+?>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Add
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">User profile</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="nav-tabs-custom system-multi-language-tab">
+                <ul class="nav nav-tabs">
+                    <?php $first = true; ?>
+                    <?php foreach ($this->languages as $language): ?>
+                        <li class="<?= ($first ? "active" : "" ) ?>">
+                            <a href="#lang_<?= $language->lang_code; ?>" data-toggle="tab">
+                                <?= $language->lang_name; ?>
+                            </a>
+                        </li>
+                        <?php $first = false; ?>
+                    <?php endforeach; ?>
+                </ul>
+                <?php echo $this->form['open'] ?>
+                <div class="tab-content">
+                    <?php $first = true; ?>
+                    <?php foreach ($this->languages as $language): ?>
+                        <div class="<?= ($first ? "active" : "" ) ?> tab-pane" id="lang_<?= $language->lang_code; ?>">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <?php echo $this->form[$language->lang_code . '_category_name_label'] ?>
+                                    <div class="col-sm-10">
+                                        <?php echo $this->form[$language->lang_code . '_category_name_input'] ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->form[$language->lang_code . '_sef_label'] ?>
+                                    <div class="col-sm-10">
+                                        <?php echo $this->form[$language->lang_code . '_sef_input'] ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <?php echo $this->form[$language->lang_code . '_lang_id_label'] ?>
+                                    <div class="col-sm-10">
+                                        <?php echo $this->form[$language->lang_code . '_lang_id_input'] ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.tab-pane -->
+                        <?php $first = false; ?>
+                    <?php endforeach; ?>
+                </div><!-- /.tab-content -->
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <?php echo $this->form['_token'] ?>
+                    </div>
+                    <div class="form-group">
+                        <?php echo $this->form['parent_id_label'] ?>
+                        <div class="col-sm-10">
+                            <?php echo $this->form['parent_id_input'] ?>
+                            <?php echo $this->form['id_input'] ?>
+                        </div>
+                    </div>
+                    <div class="form-groupr">
+                        <?php echo $this->form['active_label'] ?>
+                        <div class="col-sm-10">
+                            <div class="checkbox">
+                                <?php echo $this->form['active_radio'] ?>           
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <?php echo $this->form['save_submit'] ?>
+                        </div>
+                    </div>
+                    <?php echo $this->form['close'] ?>
+                </div>
+            </div><!-- /.nav-tabs-custom -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

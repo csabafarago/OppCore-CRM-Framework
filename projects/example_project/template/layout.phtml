@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <?= $this->meta_tags; ?>
+        <?php
+        OppCoreClasses\View\LayoutAppender::appendHeadCss(
+                '/_projects/example/template/css/style.css'
+        );
+        ?>
+        <?= $this->head_css; ?>
+        <?= OppCoreClasses\View\LayoutAppender::generateAppendedHeadCss(); ?>
+<!--        <script src="/_templates/admin/plugins/jQuery/jQuery-2.1.4.min.js" type="text/javascript"></script>-->
+        <?= OppCoreClasses\View\LayoutAppender::generateAppendedFooterJs(); ?>
+    </head>
+    <body>
+        <header>
+            <div class="header-navigation">
+                <div class="logo">
+                    <span><a href="/">CMR</a></span>
+                    <span class="tagline">
+                        Slogen goes here
+                    </span>
+                </div>
+                <?= $this->navigation; ?>
+            </div>
+        </header>
+        <div class="placeholder"></div>
+        <?= $this->banner; ?>
+        <section>
+            <div class="wrapper">
+                <?= $this->featured; ?>
+                <?= $this->content; ?>
+            </div>
+        </section>			
+        <footer>
+            <div class="wrapper">
+                <p>All right reserved <?= date('Y'); ?> </p>
+            </div>
+        </footer>
+        <?= $this->debug; ?>
+    </body>
+</html>
